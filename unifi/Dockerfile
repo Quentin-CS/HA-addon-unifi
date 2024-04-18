@@ -8,16 +8,16 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Setup base system
 RUN \
     apt-get update \
+    && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends \
-        binutils=2.34-6ubuntu1.7 \
-        jsvc=1.0.15-8 \
-        libcap2=1:2.32-1 \
+        binutils=2.34-6ubuntu1.9 \
+        libcap2=1:2.32-1ubuntu0.1 \
         logrotate=3.14.0-4ubuntu3 \
         mongodb-server=1:3.6.9+really3.6.8+90~g8e540c0b6d-0ubuntu5.3 \
-        openjdk-17-jdk-headless=17* \
+        openjdk-17-jre-headless=17* \
     \
     && curl -J -L -o /tmp/unifi.deb \
-        "https://dl.ui.com/unifi/8.0.24/unifi_sysvinit_all.deb" \
+        "https://dl.ui.com/unifi/8.1.113/unifi_sysvinit_all.deb" \
     \
     && dpkg --install /tmp/unifi.deb \
     && apt-get clean \
